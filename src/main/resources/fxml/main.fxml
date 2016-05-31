@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="890.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mailsender.MainApp">
+   <children>
+      <MenuBar fx:id="menuBar" layoutX="-1.0" prefHeight="29.0" prefWidth="890.0">
+        <menus>
+          <Menu fx:id="file" mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="fileOpen" mnemonicParsing="false" onAction="#openFileAction" text="Open" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <SplitPane dividerPositions="0.2635135135135135" layoutY="29.0" prefHeight="600" prefWidth="890.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="160.0" prefHeight="160.0" prefWidth="100.0" >
+               <children>
+                  <ListView fx:id="listViewMails" prefHeight="592.0" prefWidth="600.0" />
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.9063545150501672" layoutX="-4.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="650.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <HTMLEditor htmlText="&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body contenteditable=&quot;true&quot;&gt;&lt;/body&gt;&lt;/html&gt;" layoutX="14.0" layoutY="14.0" prefHeight="521.0" prefWidth="631.0" fx:id="htmlEditor"/>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" maxHeight="100">
+                           <children>
+                              <Button layoutX="531.0" layoutY="13.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="103.0" text="Send" onAction="#sendMessageButton" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</Pane>

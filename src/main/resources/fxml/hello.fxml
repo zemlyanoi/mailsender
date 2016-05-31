@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mouseTransparent="true" prefHeight="400.0" prefWidth="800.0" scaleShape="false" styleClass="main-panel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar prefHeight="29.0" prefWidth="800.0" fx:id="menuBar">
+      </MenuBar>
+      <BorderPane layoutY="29.0" prefHeight="600" prefWidth="800.0">
+         <top>
+            <Pane prefHeight="50.0" prefWidth="800.0" BorderPane.alignment="CENTER" styleClass="topPanel"/>
+         </top>
+         <left>
+            <Pane prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" styleClass="leftPanel"/>
+         </left>
+         <center>
+            <Pane prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER" styleClass="centerPanel"/>
+         </center>
+         <right>
+            <Pane prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" styleClass="rightPanel"/>
+         </right>
+         <bottom>
+            <Pane prefHeight="50.0" prefWidth="800.0" BorderPane.alignment="CENTER" styleClass="bottomPanel"/>
+         </bottom>
+      </BorderPane>
+   </children>
+</Pane>
