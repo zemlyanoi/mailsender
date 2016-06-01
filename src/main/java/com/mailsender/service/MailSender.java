@@ -1,6 +1,7 @@
 package com.mailsender.service;
 
 
+import com.mailsender.MainApp;
 import org.codemonkey.simplejavamail.Mailer;
 import org.codemonkey.simplejavamail.TransportStrategy;
 import org.codemonkey.simplejavamail.email.Email;
@@ -17,7 +18,8 @@ public class MailSender {
                 .textHTML(text)
                 .build();
 
-        new Mailer("smtp.gmail.com", 465, "", "", TransportStrategy.SMTP_SSL).sendMail(email);
+        //new Mailer("smtp.gmail.com", 465, "", "", TransportStrategy.SMTP_SSL).sendMail(email);
+        new Mailer(MainApp.emailSettings.smtp, MainApp.emailSettings.port, MainApp.emailSettings.login, MainApp.emailSettings.password, TransportStrategy.SMTP_SSL).sendMail(email);
         System.out.println(emailAddres + " ---  SENT");
     }
 }

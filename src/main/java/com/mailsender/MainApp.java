@@ -1,14 +1,16 @@
 package com.mailsender;
 
 import com.google.gson.Gson;
+import com.mailsender.controller.Settings;
+import com.mailsender.core.MainApplication;
 import com.mailsender.model.User;
 import com.mailsender.model.Users;
 import com.mailsender.service.MailSender;
+import com.mailsender.settings.EmailSettings;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,13 +20,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.web.HTMLEditor;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jws.soap.SOAPBinding;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -41,13 +44,18 @@ public class MainApp extends Application {
     public static final String FILE_SELECTOR = "#file";
 
     public static final String UI_MAIN_PAGE = "/fxml/main.fxml";
+    public static final String UI_SETTINGS_PAGE = "/fxml/settings.fxml";
     public static final String CSS_MAIN_PAGE = "/styles/styles.css";
     public static final Integer WIDTH = 820;
     public static final Integer HEIGHT = 600;
 
     private Users users;
 
-    private Stage currentStage;
+    public static EmailSettings emailSettings = new EmailSettings();
+
+    private static Stage currentStage;
+    public static  Stage dialog;
+
     @FXML
     private MenuBar menuBar;
     @FXML
@@ -76,6 +84,11 @@ public class MainApp extends Application {
         stage.setResizable(false);
 
         stage.show();
+        MainApplication.getInstance().setMainApp(this);
+    }
+
+    public static void saveSettings(EmailSettings emailSettings) {
+         MainApp.emailSettings = emailSettings;
     }
 
     @FXML
@@ -84,6 +97,30 @@ public class MainApp extends Application {
         if (users != null) {
             updateListOfMails(users);
         }
+    }
+
+    @FXML
+    public void openSettingsAction(ActionEvent event) {
+        try {
+            showDialogSettings();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showDialogSettings() throws IOException {
+        final FXMLLoader loader = new FXMLLoader(getClass().getResource(UI_SETTINGS_PAGE));
+        final Parent root = loader.load();
+        final Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initOwner(scene.getWindow());
+        stage.setScene(scene);
+
+        MainApplication.getInstance().setSettingsDialogStage(stage);
+
+        stage.show();
     }
 
     @FXML
